@@ -144,7 +144,8 @@ var ViewabilityTracker = /** @class */ (function () {
         for (var i = 0; i < count; i++) {
             itemRect = this._layouts[i];
             this._setRelevantBounds(itemRect, relevantDim);
-            if (this._itemIntersectsVisibleWindow(relevantDim.start, relevantDim.end)) {
+            var condition = this._isRTL ? this._itemIntersectsVisibleWindow(relevantDim.end, relevantDim.start) : this._itemIntersectsVisibleWindow(relevantDim.start, relevantDim.end);
+            if (condition) {
                 return i;
             }
         }
