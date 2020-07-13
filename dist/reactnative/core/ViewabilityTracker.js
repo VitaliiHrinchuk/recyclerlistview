@@ -127,7 +127,7 @@ var ViewabilityTracker = /** @class */ (function () {
         var newVisibleItems = [];
         var newEngagedItems = [];
         this._fitIndexes(newVisibleItems, newEngagedItems, startIndex, true);
-        this._fitIndexes(newVisibleItems, newEngagedItems, startIndex + 1, false);
+        // this._fitIndexes(newVisibleItems, newEngagedItems, startIndex + 1, false);
         this._diffUpdateOriginalIndexesAndRaiseEvents(newVisibleItems, newEngagedItems);
     };
     ViewabilityTracker.prototype._doInitialFit = function (offset, windowCorrection) {
@@ -144,7 +144,9 @@ var ViewabilityTracker = /** @class */ (function () {
         for (var i = 0; i < count; i++) {
             itemRect = this._layouts[i];
             this._setRelevantBounds(itemRect, relevantDim);
-            var condition = this._isRTL ? this._itemIntersectsVisibleWindow(relevantDim.end, relevantDim.start) : this._itemIntersectsVisibleWindow(relevantDim.start, relevantDim.end);
+            var condition = this._isRTL
+                ? this._itemIntersectsVisibleWindow(relevantDim.end, relevantDim.start)
+                : this._itemIntersectsVisibleWindow(relevantDim.start, relevantDim.end);
             if (condition) {
                 return i;
             }
