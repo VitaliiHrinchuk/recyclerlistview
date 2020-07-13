@@ -170,7 +170,7 @@ export default class ViewabilityTracker {
     const newVisibleItems: number[] = [];
     const newEngagedItems: number[] = [];
     this._fitIndexes(newVisibleItems, newEngagedItems, startIndex, true);
-    this._fitIndexes(newVisibleItems, newEngagedItems, startIndex + 1, false);
+    // this._fitIndexes(newVisibleItems, newEngagedItems, startIndex + 1, false);
     this._diffUpdateOriginalIndexesAndRaiseEvents(newVisibleItems, newEngagedItems);
   }
 
@@ -190,7 +190,9 @@ export default class ViewabilityTracker {
     for (let i = 0; i < count; i++) {
       itemRect = this._layouts[i];
       this._setRelevantBounds(itemRect, relevantDim);
-      let condition = this._isRTL ? this._itemIntersectsVisibleWindow(relevantDim.end, relevantDim.start) : this._itemIntersectsVisibleWindow(relevantDim.start, relevantDim.end);
+      let condition = this._isRTL
+        ? this._itemIntersectsVisibleWindow(relevantDim.end, relevantDim.start)
+        : this._itemIntersectsVisibleWindow(relevantDim.start, relevantDim.end);
       if (condition) {
         return i;
       }
